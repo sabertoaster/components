@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="clock"></div>
+    <div class="btn-UI-grp">
+        <div class="mod-UI-btn"></div>
+        <div class="card-UI-btn"></div>
+    </div>
+    <div class="row justify-content-md-center" style="margin-top: 25px;">
+        <div class="col col-md-12 col-lg-5 col-xl-5">
+            <div class="panel-container">
+                <!-- <div class="template">
+
+                </div> -->
+                <div class="content-container">
+                    <div class="top-banner">
+
+                    </div>
+                    <div class="list-screen">
+                        <div class="myCarousel">
+                            <div class="list-cards">
+                                <div class="carousel-controller">
+                                    <div class="carousel-controller-btn carousel-controller-prev"></div>
+                                    <div class="carousel-controller-btn carousel-controller-next"></div>
+                                </div>
+                                <div id="wrapper">
+                                    <div class="card card-special">
+                                        <div class="card-wrapper">
+                                            <div class="card-component card-cross-price">10000</div>
+                                            <div class="card-component card-ingame-price">696996</div>
+                                            <div class="card-component card-price">9999</div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-wrapper">
+                                            <div class="card-component card-cross-price">10000</div>
+                                            <div class="card-component card-ingame-price">696996</div>
+                                            <div class="card-component card-price">99</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="estimate-screen screen-container">
+                        <div class="left-layout mod-UI-panel">
+                            <div class="estimate-mod screen-container">
+                                <div class="useless-info">
+                                    <div class="estimate-coin" style="top: 9%;">asdfsd</div>
+                                    <div class="estimate-money" style="bottom: 7%;">asdasd</div>
+                                </div>
+                                <div class="normal-text" style="width: 100%; top: 75.6%; height: 5%;">
+                                    Gọi để nạp
+                                </div>
+                                <div class="call-image"></div>
+                            </div>
+                        </div>
+                        <div class="left-layout card-UI-panel">
+                            <div class="estimate-mod screen-container">
+                                <div class="cardpay-provider"></div>
+                                <div class="cardpay-box cardpay-price-selector" placeholder="Chọn mệnh giá nạp"></div>
+                                <div class="cardpay-box cardpay-seri-box" placeholder="Chọn mệnh giá nạp"></div>
+                                <div class="cardpay-box cardpay-code-box" placeholder="Chọn mệnh giá nạp"></div>
+                                <div class="cardpay-lower-component">
+                                    <div class="cardpay-button"></div>
+                                    <!-- <div class="call-image"></div> -->
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="right-layout">
+                            <div class="normal-text" style="width: 100%; top: 20%;">
+                                Mệnh giá
+                            </div>
+                            <div class="detail-info">
+                                <div class="price-selector">
+                                    <div class="btn-minus"></div>
+                                    <div class="price-value">
+                                        <span class="center-div w-100">999.999.99</span>
+                                    </div>
+                                    <div class="btn-plus"></div>
+                                </div>
+
+                                <div class="normal-text" style="width: 100%; margin-top: 1%; height: 5%;">
+                                    Bảo nhận được
+                                </div>
+                                <div class="estimate-coin">
+                                    <span class="center-div w-75">999.999.99</span>
+                                </div>
+                                <div class="normal-text" style="width: 100%; margin-top: 30.5%;">
+                                    Bao gồm
+                                </div>
+                                <div class="estimate-table">
+                                    <div class="estimate-row">
+                                        <span class="estimate-type">
+                                            Mệnh giá nạp
+                                        </span>
+                                        <div class="btn-detail">
+
+                                        </div>
+                                        <span class="estimate-value value-origin">
+                                            asd
+                                        </span>
+                                    </div>
+                                    <div class="estimate-row">
+                                        <span class="estimate-type">
+                                            Điểm Vip
+                                        </span>
+                                        <div class="btn-detail">
+
+                                        </div>
+                                        <span class="estimate-value value-vip">
+                                            asd
+                                        </span>
+                                    </div>
+                                    <div class="estimate-row">
+                                        <span class="estimate-type">
+                                            Khuyến mại
+                                        </span>
+                                        <div class="btn-detail">
+
+                                        </div>
+                                        <span class="estimate-value value-promo">
+                                            asd
+                                        </span>
+                                    </div>
+                                    <div class="estimate-row">
+                                        <span class="estimate-type">
+                                            Nạp lần đầu
+                                        </span>
+                                        <div class="btn-detail">
+
+                                        </div>
+                                        <span class="estimate-value value-first">
+                                            asd
+                                        </span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="footer-banner">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+<script src="myJs.js"></script>
+
+</html>
+
+<style>
+
+</style>
