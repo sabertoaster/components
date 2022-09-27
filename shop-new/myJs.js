@@ -47,6 +47,8 @@ $(cards).each(function(index, element) {
                 // after click functions here
                 toggleListScreen(false);
                 console.log(index);
+                currentDataIndex = index;
+                loadContent(currentDataIndex);
             }
             totalMouseDistance = 0;
             $(document).off("mousemove");

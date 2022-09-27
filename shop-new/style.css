@@ -127,10 +127,12 @@
     }
     
     .price-selector {
-        margin-top: 2.5%;
+        /* margin-top: 2.5%; */
         height: 13.5%;
         background: url("resources/khung bao.png");
         background-size: 100% 100%;
+        display: flex;
+        justify-content: space-between;
     }
     
     .btn-minus {
@@ -138,13 +140,11 @@
         height: 100%;
         background: url("resources/tru.png");
         background-size: 100% 100%;
-        float: left;
     }
     
     .price-value {
-        width: 100%;
+        width: 66%;
         height: 100%;
-        position: absolute;
     }
     
     .btn-plus {
@@ -152,7 +152,6 @@
         height: 100%;
         background: url("resources/cong.png");
         background-size: 100% 100%;
-        float: right;
     }
     
     .center-div {
@@ -350,6 +349,8 @@
     }
     /* CARD-UI */
     
+    .cardpay-price-selector {}
+    
     .cardpay-box {
         width: 78%;
         height: 10%;
@@ -358,6 +359,8 @@
         background-image: url("resources/nhap ma the.png");
         background-repeat: no-repeat;
         background-size: contain;
+        padding-top: 4%;
+        padding-left: 5%;
     }
     
     .cardpay-price-selector {
@@ -389,4 +392,12 @@
         background-image: url("resources/bt nt.png");
         background-repeat: no-repeat;
         background-size: contain;
+    }
+    
+    [contenteditable] {
+        outline: 0px solid transparent;
+    }
+    
+    [contentEditable=true]:empty:not(:focus):before {
+        content: attr(data-text)
     }

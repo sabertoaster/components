@@ -327,6 +327,7 @@ function loadContent(index) {
             $(element).find("span").text(data.totalCoin);
         }
     });
+    $(".cardpay-price-selector").text(data.totalCoin);
 }
 
 function setEventForButtons() {
@@ -347,7 +348,6 @@ function setEventForButtons() {
 
 
     $(".btn-plus").on("click", function() {
-        console.log(currentDataIndex);
         if (currentDataIndex == currentData.price.length - 1) {
             currentDataIndex = 0;
         } else currentDataIndex++;
@@ -355,8 +355,10 @@ function setEventForButtons() {
     });
 
     $(".btn-minus").click(function(e) {
-        e.preventDefault();
-        console.log(currentDataIndex);
+        if (currentDataIndex == 0) {
+            currentDataIndex = currentData.price.length - 1;
+        } else currentDataIndex--;
+        loadContent(currentDataIndex);
     });
 }
 
