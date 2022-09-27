@@ -110,17 +110,23 @@ class Carousel {
         this.itemElementList = itemElementList;
         this.itemCount = itemElementList.length;
         this.currentItemIndex = 0;
-        this.setInterval(() => {
+        this.delayTime = delayTime;
+        setInterval(() => {
             this.slideNext();
         }, delayTime);
         itemElementList[0].classList.add('active');
         itemElementList[0].classList.remove('inactive');
+       
         this.ignoreIndexList = [];
     }
 
     slideNext() {
-        this.itemElementList[this.currentItemIndex].classList.add('inactive');
-        this.itemElementList[this.currentItemIndex].classList.remove('active');
+        let currentItemClassList = this.itemElementList[this.currentItemIndex].classList
+        currentItemClassList.add('inactive');
+        currentItemClassList.remove('active');
+        setTimeout(function(){
+            currentItemClassList.remove('inactive');
+        },this.delayTime - 100);
         this.currentItemIndex++;
         while (this.ignoreIndexList.indexOf(this.currentItemIndex) != -1) {
             this.currentItemIndex++;
@@ -181,6 +187,7 @@ function onDocumentReady() {
     // get data mặc định là data nạp card;
 
     spawnCard();
+    // new Carousel($(".top-banner")[0],$(".banner"),2000);
 
 }
 

@@ -401,3 +401,23 @@
     [contentEditable=true]:empty:not(:focus):before {
         content: attr(data-text)
     }
+
+
+    .top-banner{
+        overflow: hidden;
+    }
+    .top-banner > .banner{
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
+        right: -100%;        
+    }
+    .top-banner > .banner.active{
+        right: 0;
+        transition: right 1s;
+    }
+    .top-banner > .banner.inactive{
+        right: 100%;
+        transition: right 1s;
+    }
