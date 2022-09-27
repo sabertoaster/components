@@ -25,7 +25,7 @@ class PaymentData {
     // index of origin list in sorted list Price list
     getViewOrder() {
         let viewOrder = [];
-        for (let i = 0; i < this.sortedPrice.length; i++) {
+        for (let i = 0; i < this.price.length; i++) {
             viewOrder.push(this.price.indexOf(this.sortedPrice[i]));
         }
         return viewOrder;
@@ -44,7 +44,7 @@ class PaymentData {
 
     //clone sort high to low funtion
     sortHighToLow(originList) {
-        return [...originList].sort((a, b) => b - a);
+        return [...originList].sort((a, b) => a - b);
     }
 
     // tự trừ để đỡ phải call api lấy data lại, cũng ko cần sync time nữa
@@ -135,7 +135,7 @@ class Carousel {
 }
 
 /// coi như đoạn này là ready xong bắt đầu call và có data
-var paycardData, paymodData, clock;
+var paycardData, paymodData, clock, firstPay = false;
 
 function onDocumentReady() {
 
@@ -143,32 +143,7 @@ function onDocumentReady() {
     setEventForButtons();
 
     // đoạn này call api để lấy data nhưng mà tạm thời hardcode call thẳng
-    let data1 = {
-        "m": 0,
-        "e": 100,
-        "v": [0, 0, 0, 0, 0, 20, 20, 30, 40],
-        "t": [250, 300, 300, 350, 400, 450, 450, 450, 450],
-        "b": [6500000, 15000000, 22000000, 39500000, 80000000, 144000000, 201000000, 320000000, 620000000],
-        "vnd": [10000, 20000, 30000, 50000, 100000, 200000, 300000, 500000, 1000000],
-        "rd": [250, 300, 300, 350, 400, 450, 450, 450, 450],
-        "rv": [150, 100, 90, 80, 70, 60, 50, 40, 30, 20, 0],
-        "rf": [3000000, 7000000, 10000000, 17000000, 30000000, 30000000, 30000000, 30000000, 30000000],
-        "p": [
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            []
-        ],
-        "mm": 6,
-        "isv": false,
-        "st": 1663866060,
-        "et": 1663952340
-    };
+    let data1 = {"m":0,"e":0,"v":[150,150,150,150,150,150,150,150,150],"t":[400,450,350,250,300,300,450,450,450],"b":[55000000,120000000,25000000,4000000,9000000,13500000,180000000,300000000,600000000],"vnd":[100000,200000,50000,10000,20000,30000,300000,500000,1000000],"rd":[400,450,350,250,300,300,450,450,450],"rv":[150,100,90,80,70,60,50,40,30,20,0],"rf":[30000000,30000000,17000000,3000000,7000000,10000000,30000000,30000000,30000000],"p":[[],[],[],[],[],[],[],[],[]],"mm":6,"isv":false,"st":0,"et":0};
     let data2 = {
         "m": 0,
         "e": 0,
@@ -317,7 +292,7 @@ function loadContent(index) {
     $(".value-origin").text(data.originCoin);
     $(".value-vip").text(data.vipBonus);
     $(".value-promo").text(data.eventBonus);
-    $(".value-first").text(data.firstBonus);
+    $(".value-first").text(firstPay?data.firstBonus:0);
 
     $(".estimate-coin").each(function(index, element) {
         // element == this
@@ -327,7 +302,7 @@ function loadContent(index) {
             $(element).find("span").text(data.totalCoin);
         }
     });
-    $(".cardpay-price-selector").text(data.totalCoin);
+    $(".cardpay-price-selector").text(data.price);
 }
 
 function setEventForButtons() {
@@ -340,6 +315,7 @@ function setEventForButtons() {
         $(".mod-UI-btn").css("background-image", "url('resources/nM2.png')");
         $(".card-UI-btn").css("background-image", "url('resources/nt2.png')"); // visualize
     });
+
     $(".card-UI-btn").on("click", function() {
         switchToCardTab();
         $(".mod-UI-btn").css("background-image", "url('resources/nM.png')");
@@ -351,15 +327,21 @@ function setEventForButtons() {
         if (currentDataIndex == currentData.price.length - 1) {
             currentDataIndex = 0;
         } else currentDataIndex++;
-        loadContent(currentDataIndex);
+        loadCurrentData();
+        
     });
 
     $(".btn-minus").click(function(e) {
         if (currentDataIndex == 0) {
             currentDataIndex = currentData.price.length - 1;
         } else currentDataIndex--;
-        loadContent(currentDataIndex);
+        loadCurrentData();
     });
+}
+
+function loadCurrentData(){
+    console.log(currentDataIndex);
+    loadContent(currentData.viewOrder[currentDataIndex]);
 }
 
 // LIST-SCREEN
