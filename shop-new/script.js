@@ -116,7 +116,7 @@ class Carousel {
         }, delayTime);
         itemElementList[0].classList.add('active');
         itemElementList[0].classList.remove('inactive');
-       
+
         this.ignoreIndexList = [];
     }
 
@@ -124,9 +124,9 @@ class Carousel {
         let currentItemClassList = this.itemElementList[this.currentItemIndex].classList
         currentItemClassList.add('inactive');
         currentItemClassList.remove('active');
-        setTimeout(function(){
+        setTimeout(function() {
             currentItemClassList.remove('inactive');
-        },this.delayTime - 100);
+        }, this.delayTime - 100);
         this.currentItemIndex++;
         while (this.ignoreIndexList.indexOf(this.currentItemIndex) != -1) {
             this.currentItemIndex++;
@@ -149,7 +149,32 @@ function onDocumentReady() {
     setEventForButtons();
 
     // đoạn này call api để lấy data nhưng mà tạm thời hardcode call thẳng
-    let data1 = {"m":0,"e":0,"v":[150,150,150,150,150,150,150,150,150],"t":[400,450,350,250,300,300,450,450,450],"b":[55000000,120000000,25000000,4000000,9000000,13500000,180000000,300000000,600000000],"vnd":[100000,200000,50000,10000,20000,30000,300000,500000,1000000],"rd":[400,450,350,250,300,300,450,450,450],"rv":[150,100,90,80,70,60,50,40,30,20,0],"rf":[30000000,30000000,17000000,3000000,7000000,10000000,30000000,30000000,30000000],"p":[[],[],[],[],[],[],[],[],[]],"mm":6,"isv":false,"st":0,"et":0};
+    let data1 = {
+        "m": 0,
+        "e": 0,
+        "v": [150, 150, 150, 150, 150, 150, 150, 150, 150],
+        "t": [400, 450, 350, 250, 300, 300, 450, 450, 450],
+        "b": [55000000, 120000000, 25000000, 4000000, 9000000, 13500000, 180000000, 300000000, 600000000],
+        "vnd": [100000, 200000, 50000, 10000, 20000, 30000, 300000, 500000, 1000000],
+        "rd": [400, 450, 350, 250, 300, 300, 450, 450, 450],
+        "rv": [150, 100, 90, 80, 70, 60, 50, 40, 30, 20, 0],
+        "rf": [30000000, 30000000, 17000000, 3000000, 7000000, 10000000, 30000000, 30000000, 30000000],
+        "p": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "mm": 6,
+        "isv": false,
+        "st": 0,
+        "et": 0
+    };
     let data2 = {
         "m": 0,
         "e": 0,
@@ -187,7 +212,7 @@ function onDocumentReady() {
     // get data mặc định là data nạp card;
 
     spawnCard();
-    // new Carousel($(".top-banner")[0],$(".banner"),2000);
+    var x = new Carousel($(".top-banner")[0], $(".banner"), 2000);
 
 }
 
@@ -299,10 +324,9 @@ function loadContent(index) {
     $(".value-origin").text(data.originCoin);
     $(".value-vip").text(data.vipBonus);
     $(".value-promo").text(data.eventBonus);
-    $(".value-first").text(firstPay?data.firstBonus:0);
+    $(".value-first").text(firstPay ? data.firstBonus : 0);
 
     $(".estimate-coin").each(function(index, element) {
-        // element == this
         if (index == 0) {
             $(element).text(data.totalCoin);
         } else {
@@ -335,7 +359,7 @@ function setEventForButtons() {
             currentDataIndex = 0;
         } else currentDataIndex++;
         loadCurrentData();
-        
+
     });
 
     $(".btn-minus").click(function(e) {
@@ -346,7 +370,7 @@ function setEventForButtons() {
     });
 }
 
-function loadCurrentData(){
+function loadCurrentData() {
     console.log(currentDataIndex);
     loadContent(currentData.viewOrder[currentDataIndex]);
 }

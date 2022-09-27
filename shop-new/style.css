@@ -6,6 +6,43 @@
         overflow: hidden;
     }
     
+    @font-face {
+        font-family: UTM_AVOBOLD;
+        src: url("resources/fonts/UTM AVOBOLD.TTF");
+    }
+    
+    @font-face {
+        font-family: UTM_AVO;
+        src: url("resources/fonts/UTM AVO.TTF");
+    }
+    
+    .utm_avobold {
+        font-family: UTM_AVOBOLD;
+    }
+    
+    .price-color {
+        color: #c40700;
+        font-size: 1.5vw;
+    }
+    
+    .detail-info-font {
+        font-size: 0.7vw;
+        color: #f1eea4;
+    }
+    
+    .header-price-font,
+    .lower-price-font {
+        font-family: UTM_AVOBOLD;
+    }
+    
+    .lower-price-font {
+        font-size: 1.5vw;
+        color: #fcfbda;
+        stroke: #562a00;
+        stroke-width: 15vw;
+        -webkit-text-stroke: 2px #562a00;
+    }
+    
     .panel-container {
         background: url("resources/khung nap the.png");
         background-size: 100% 100%;
@@ -17,13 +54,12 @@
     
     .panel-container .normal-text {
         text-align: center;
-        color: white;
-        font-size: 100%;
         position: absolute;
         display: flex;
         flex-grow: 1;
         justify-content: center;
         align-items: center;
+        font-family: UTM_AVOBOLD;
     }
     
     .panel-container>.content-container {
@@ -137,7 +173,7 @@
     
     .btn-minus {
         width: 17%;
-        height: 100%;
+        height: 91%;
         background: url("resources/tru.png");
         background-size: 100% 100%;
     }
@@ -149,7 +185,7 @@
     
     .btn-plus {
         width: 17%;
-        height: 100%;
+        height: 91%;
         background: url("resources/cong.png");
         background-size: 100% 100%;
     }
@@ -176,7 +212,7 @@
     
     .detail-info>.estimate-table {
         margin-top: 1.5%;
-        height: 42.5%;
+        height: 50.5%;
         background: url("resources/khung diem vip.png");
         background-size: 100% 100%;
         padding-top: 3%;
@@ -198,8 +234,11 @@
     }
     
     .estimate-row>.estimate-type {
-        margin-left: 5%;
+        margin-left: 7%;
         float: left;
+        color: #cdcf94;
+        font-family: UTM_AVO;
+        font-size: 0.8vw;
     }
     
     .estimate-row>.estimate-value {
@@ -207,7 +246,9 @@
         width: 4em;
         text-align: center;
         float: right;
-        color: gold;
+        color: #f3b953;
+        font-family: UTM_AVOBOLD;
+        font-size: 1vw;
     }
     
     .estimate-row>.btn-detail {
@@ -349,8 +390,6 @@
     }
     /* CARD-UI */
     
-    .cardpay-price-selector {}
-    
     .cardpay-box {
         width: 78%;
         height: 10%;
@@ -361,6 +400,8 @@
         background-size: contain;
         padding-top: 4%;
         padding-left: 5%;
+        color: #7e161e;
+        font-size: 1vw;
     }
     
     .cardpay-price-selector {
@@ -401,23 +442,36 @@
     [contentEditable=true]:empty:not(:focus):before {
         content: attr(data-text)
     }
-
-
-    .top-banner{
+    
+    .top-banner {
         overflow: hidden;
     }
-    .top-banner > .banner{
+    
+    .top-banner>.banner {
         width: 100%;
         height: 100%;
-        display: block;
+        display: flex;
         position: absolute;
-        right: -100%;        
+        right: -100%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
-    .top-banner > .banner.active{
+    
+    .banner-line {
+        position: relative;
+    }
+    
+    .banner-line * {
+        position: relative;
+    }
+    
+    .top-banner>.banner.active {
         right: 0;
         transition: right 1s;
     }
-    .top-banner > .banner.inactive{
+    
+    .top-banner>.banner.inactive {
         right: 100%;
         transition: right 1s;
     }
