@@ -34,31 +34,31 @@
 
 /* ONCLICK-CARD */
 
-// const cards = $(".card");
-// var totalMouseDistance = 0;
-// var limitDistance = 40;
-// var lastSeenAt = {
-//     x: null,
-//     y: null
-// };
+const cards = $(".card");
+var totalMouseDistance = 0;
+var limitDistance = 40;
+var lastSeenAt = {
+    x: null,
+    y: null
+};
 
-// $(cards).each(function(index, element) {
-//     $(element).mousedown(function() {
-//         $(document).mousemove(clickEventHandle);
-//         $(document).mouseup(function() {
-//             if (totalMouseDistance <= limitDistance) {
-//                 // after click functions here
-//                 toggleListScreen(false);
-//                 console.log(index);
-//                 currentDataIndex = currentData.viewOrder.indexOf(index);
-//                 loadCurrentData();
-//             }
-//             totalMouseDistance = 0;
-//             $(document).off("mousemove");
-//             $(document).off("mouseup");
-//         });
-//     });
-// });
+$(cards).each(function(index, element) {
+    $(element).mousedown(function() {
+        $(document).mousemove(clickEventHandle);
+        $(document).mouseup(function() {
+            if (totalMouseDistance <= limitDistance) {
+                // after click functions here
+                toggleListScreen(false);
+                console.log(index);
+                currentDataIndex = currentData.viewOrder.indexOf(index);
+                loadCurrentData();
+            }
+            totalMouseDistance = 0;
+            $(document).off("mousemove");
+            $(document).off("mouseup");
+        });
+    });
+});
 
 
 function clickEventHandle(event) {
@@ -101,11 +101,33 @@ $(sliderLookup).mousedown((e) => {
     });
 });
 
+currentData.reSortOrder();
+var dropdownData = [];
+for (var i = 0; i < currentData.sortedPrice.length; i++) {
+    dropdownData.push({
+        "id": i,
+        "text": formatNum(currentData.sortedPrice[i]) + " VNĐ"
+    });
+}
+console.log(dropdownData);
 
-// const button = $(".carousel-controller-btn");
-// $(button).each(function(index, element) {
-//     // element == this
-//     $(element).click(function() {
-//         console.log(1111111);
-//     });
-// }); test button clickable
+$(document).ready(function() {
+    var $disabledResults = $(".js-example-disabled-results");
+    var temp = $disabledResults.select2({
+        minimumResultsForSearch: -1,
+        width: '90%',
+        height: '100%',
+        data: dropdownData
+    })
+    console.log(temp);
+    // $(temp).each(function(index, element) {
+    //     console.log($($(element)[0]));
+    //     $(element).each(function(iter, el) {
+    //         console.log($(el));
+    //         $(el).each(function(iterator, ele) {
+    //             $(ele).addClass("tessstttt");
+    //             console.log($(ele));
+    //         })
+    //     })
+    // });
+});

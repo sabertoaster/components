@@ -15,7 +15,7 @@ class PaymentData {
         this._vipBonus = rawData.v;
         this.vipBonusReference = rawData.rv; // just 4 view
 
-        this.onRemoveEventBonus = ()=>{};
+        this.onRemoveEventBonus = () => {};
     }
 
     reSortOrder() {
@@ -97,13 +97,13 @@ class CountdountClock {
 
     initData(eventSale) {
         this.eventSale = eventSale;
-        if(!eventSale.isEvent)
+        if (!eventSale.isEvent)
             clearInterval(this.interval);
     }
 
     redrawClock() {
         if (this.eventSale == null) return;
-        let secondLeft = this.eventSale.endTime  - Date.now()/1000;
+        let secondLeft = this.eventSale.endTime - Date.now() / 1000;
         if (secondLeft < 0) {
             this.eventSale.resetRate();
             clearInterval(this.interval);
@@ -114,18 +114,18 @@ class CountdountClock {
 
     hms(seconds) {
         return [3600, 60]
-          .reduceRight(
-            (p, b) => r => [Math.floor(r / b)].concat(p(r % b)),
-            r => [r]
-          )(seconds)
-          .map(a => a.toString().padStart(2, '0'))
-          .join(':');
+            .reduceRight(
+                (p, b) => r => [Math.floor(r / b)].concat(p(r % b)),
+                r => [r]
+            )(seconds)
+            .map(a => a.toString().padStart(2, '0'))
+            .join(':');
     }
 }
 
 class Carousel {
 
-    constructor(containerElement, itemElementList, delayTime, ignoreIndexList ) {
+    constructor(containerElement, itemElementList, delayTime, ignoreIndexList) {
         this.containerElement = containerElement;
         this.itemElementList = itemElementList;
         this.itemCount = itemElementList.length;
@@ -234,7 +234,32 @@ function onDocumentReady() {
     setEventForButtons();
 
     // đoạn này call api để lấy data nhưng mà tạm thời hardcode call thẳng
-    let data1 = {"m":0,"e":100,"v":[150,150,150,150,150,150,150,150,150],"t":[400,450,350,250,300,300,450,450,450],"b":[65000000,140000000,30000000,5000000,11000000,16500000,210000000,350000000,700000000],"vnd":[100000,200000,50000,10000,20000,30000,300000,500000,1000000],"rd":[400,450,350,250,300,300,450,450,450],"rv":[150,100,90,80,70,60,50,40,30,20,0],"rf":[30000000,30000000,17000000,3000000,7000000,10000000,30000000,30000000,30000000],"p":[[],[],[],[],[],[],[],[],[]],"mm":6,"isv":false,"st":1664298060,"et":1664384340};
+    let data1 = {
+        "m": 0,
+        "e": 100,
+        "v": [150, 150, 150, 150, 150, 150, 150, 150, 150],
+        "t": [400, 450, 350, 250, 300, 300, 450, 450, 450],
+        "b": [65000000, 140000000, 30000000, 5000000, 11000000, 16500000, 210000000, 350000000, 700000000],
+        "vnd": [100000, 200000, 50000, 10000, 20000, 30000, 300000, 500000, 1000000],
+        "rd": [400, 450, 350, 250, 300, 300, 450, 450, 450],
+        "rv": [150, 100, 90, 80, 70, 60, 50, 40, 30, 20, 0],
+        "rf": [30000000, 30000000, 17000000, 3000000, 7000000, 10000000, 30000000, 30000000, 30000000],
+        "p": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "mm": 6,
+        "isv": false,
+        "st": 1664298060,
+        "et": 1664384340
+    };
     let data2 = {
         "m": 0,
         "e": 0,
@@ -271,21 +296,21 @@ function onDocumentReady() {
 
     spawnCard();
     var x = new Carousel($(".top-banner")[0], $(".banner"), 5000, ignoreBannerIndexList);
-    lookupPopup = new LookupPopup($(".tab-container"),$(".table-row")[0],$(".row-container")[0],$("#lookup-popup") );
+    lookupPopup = new LookupPopup($(".tab-container"), $(".table-row")[0], $(".row-container")[0], $("#lookup-popup"));
 
     $(".lookup-close-btn").click(() => { lookupPopup.close() });
     $(".btn-detail").each((idx, elem) => $(elem).click(() => lookupPopup.openTab(idx)));
 
     let wrapper = $("#wrapper");
-    $(".carousel-controller-prev").click(function(){
-        wrapper.animate({scrollLeft: wrapper.scrollLeft() - wrapper.width()}, 600);
+    $(".carousel-controller-prev").click(function() {
+        wrapper.animate({ scrollLeft: wrapper.scrollLeft() - wrapper.width() }, 600);
         console.log(wrapper.scrollLeft() - wrapper.width());
         return false;
-    }); 
-    $(".carousel-controller-next").click(function(){
-        wrapper.animate({scrollLeft: wrapper.scrollLeft() + wrapper.width()}, 600);
+    });
+    $(".carousel-controller-next").click(function() {
+        wrapper.animate({ scrollLeft: wrapper.scrollLeft() + wrapper.width() }, 600);
         return false;
-    }); 
+    });
 
 }
 
@@ -297,15 +322,15 @@ function onGetPaycardData(data) {
     paycardData.getDataSet();
     switchToCardTab(); // tab này được bật default sau khi load xong data
     $(".card-UI-btn").css("background-image", "url('resources/nt.png')"); // hình ảnh được bật default
-    paycardData.onRemoveEventBonus = ()=>{
-        if(ignoreBannerIndexList.indexOf(1) == -1)
+    paycardData.onRemoveEventBonus = () => {
+        if (ignoreBannerIndexList.indexOf(1) == -1)
             ignoreBannerIndexList.push(1)
-}
-    if(paycardData.eventSale.isEvent){
+    }
+    if (paycardData.eventSale.isEvent) {
         paycardData.countdountClock = new CountdountClock($("#pay-card-clock")[0]);
         paycardData.countdountClock.initData(paycardData.eventSale);
         $("#pay-card-rate")[0].innerText = `+${paycardData.eventSale.rate} Tỷ lệ`;
-    }else{
+    } else {
         ignoreBannerIndexList.push(1);
     }
 }
@@ -313,10 +338,10 @@ function onGetPaycardData(data) {
 function onGetPaymodData(data) {
     paymodData = new PaymentData(data);
     paymodData.getDataSet();
-    paymodData.onRemoveEventBonus = ()=>{
-        if(ignoreBannerIndexList.indexOf(2) == -1)
+    paymodData.onRemoveEventBonus = () => {
+        if (ignoreBannerIndexList.indexOf(2) == -1)
             ignoreBannerIndexList.push(2)
-}
+    }
 }
 
 var listTabElem = $(".list-screen"),
@@ -421,7 +446,7 @@ function loadContent(index) {
             $(element).find("span").text(formatNum(data.totalCoin));
         }
     });
-    $(".cardpay-price-selector").text(formatNum(data.price));
+    $(".select2-selection__rendered").text(formatNum(data.price));
 }
 
 function setEventForButtons() {

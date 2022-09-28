@@ -352,11 +352,12 @@
         background-image: url("resources/the thuong.png");
         Background-size: 100% 100%;
     }
-
-    #card-container{
+    
+    #card-container {
         height: 100%;
         width: fit-content;
     }
+    
     #wrapper::-webkit-scrollbar {
         display: none;
     }
@@ -436,6 +437,16 @@
         font-size: calc(0.02 * var(--font-size-ratio));
     }
     
+    .cardpay-provider {
+        top: 23%;
+        left: 40%;
+        height: 5%;
+        width: 25%;
+        background-image: url("resources/viettel.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    
     .cardpay-price-selector {
         top: 30%;
     }
@@ -479,6 +490,22 @@
         overflow: hidden;
     }
     
+    .clock-wrapper {
+        width: calc(0.15 * var(--font-size-ratio));
+        display: flex;
+        background-image: url("resources/khung time2.png");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    
+    #pay-card-clock {
+        font-family: UTM_HELVE;
+        text-align: center;
+        margin-left: 20%;
+        top: 0%;
+        font-size: calc(0.025 * var(--font-size-ratio));
+    }
+    
     .top-banner>.banner {
         width: 100%;
         height: 80%;
@@ -493,7 +520,7 @@
     
     .banner-line {
         color: #fef0ca;
-        font-size: calc(0.03 * var(--font-size-ratio));
+        font-size: calc(0.027 * var(--font-size-ratio));
     }
     
     .banner-line-special {
@@ -683,6 +710,47 @@
     .close-btn {
         background-image: url("resources/tat.png");
         background-size: 100% 100%;
+    }
+    /* select2 */
+    
+    .select2-dropdown {
+        border: none;
+        background-color: #b5b5b500;
+    }
+    
+    .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+        color: #7e161e !important;
+        background-color: #b5b5b500;
+    }
+    
+    .select2-container--default .select2-results__option--selected {
+        background-color: #b5b5b500;
+    }
+    
+    .select2-selection__rendered {
+        color: #7e161e;
+        font-family: UTM_AVOBOLD;
+        font-size: calc(0.02 * var(--font-size-ratio));
+    }
+    
+    .select2 * {
+        color: #7e161e !important;
+        line-height: normal !important;
+        font-family: UTM_AVOBOLD;
+        font-size: calc(0.02 * var(--font-size-ratio));
+    }
+    
+    .select2-container li {
+        background-image: url("resources/nhap\ ma\ the.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        color: #7e161e;
+        font-family: UTM_AVOBOLD;
+        font-size: calc(0.02 * var(--font-size-ratio));
+        height: 5vw !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     /* font dèined  */
     
