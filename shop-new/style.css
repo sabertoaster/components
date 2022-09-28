@@ -12,8 +12,18 @@
     }
     
     @font-face {
+        font-family: UTM_HELVE;
+        src: url("resources/fonts/UTM HELVE.TTF");
+    }
+    
+    @font-face {
         font-family: UTM_AVO;
         src: url("resources/fonts/UTM AVO.TTF");
+    }
+    
+    @font-face {
+        font-family: UTM_HELVEBOLD;
+        src: url("resources/fonts/UTM HELVEBOLD.TTF");
     }
     
     .utm_avobold {
@@ -30,17 +40,26 @@
         color: #f1eea4;
     }
     
-    .header-price-font,
-    .lower-price-font {
-        font-family: UTM_AVOBOLD;
+    .header-price-font {
+        font-family: UTM_HELVEBOLD;
+        font-size: 1.25vw;
+        color: #fef0ab;
+        /*fee367 -> #FFF*/
     }
     
     .lower-price-font {
-        font-size: 1.5vw;
+        font-family: UTM_AVOBOLD;
+        font-size: 1.15vw;
         color: #fcfbda;
         stroke: #562a00;
-        stroke-width: 15vw;
-        -webkit-text-stroke: 2px #562a00;
+        stroke-width: .07vw;
+        -webkit-text-stroke: .07vw #562a00;
+        transform: scale(1, 1.05);
+    }
+    
+    div.cross-font {
+        text-decoration: line-through;
+        height: 100%;
     }
     
     .panel-container {
@@ -242,12 +261,12 @@
     }
     
     .estimate-row>.estimate-value {
-        margin-right: 12%;
+        right: 15%;
         width: 4em;
         text-align: center;
         float: right;
         color: #f3b953;
-        font-family: UTM_AVOBOLD;
+        font-family: UTM_HELVEBOLD;
         font-size: 1vw;
     }
     
@@ -344,8 +363,12 @@
     }
     
     .card-cross-price {
-        top: 4%;
-        font-size: 80%;
+        top: 5%;
+        font-size: .8vw;
+        display: flex;
+        white-space: pre-wrap;
+        font-family: UTM_AVOBOLD;
+        color: #661a00;
     }
     
     .card-ingame-price {
@@ -449,7 +472,8 @@
     
     .top-banner>.banner {
         width: 100%;
-        height: 100%;
+        height: 80%;
+        top: 10%;
         display: flex;
         position: absolute;
         right: -100%;
@@ -460,6 +484,8 @@
     
     .banner-line {
         position: relative;
+        color: #fef0ca;
+        font-size: 1.25vw;
     }
     
     .banner-line * {

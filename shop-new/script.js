@@ -392,21 +392,21 @@ function loadContent(index) {
     // estimate-coin = bao, estimate-money = vnd
     var data = currentData.getDataSet(index);
     // console.log(data);
-    $(".estimate-money").text(data.price);
-    $(".price-value").find("span").text(data.price);
-    $(".value-origin").text(data.originCoin);
-    $(".value-vip").text(data.vipBonus);
-    $(".value-promo").text(data.eventBonus);
-    $(".value-first").text(firstPay ? data.firstBonus : 0);
+    $(".estimate-money").text(formatNum(data.price) + "VNĐ");
+    $(".price-value").find("span").text(formatNum(data.price));
+    $(".value-origin").text(formatNum(data.originCoin));
+    $(".value-vip").text(formatNum(data.vipBonus));
+    $(".value-promo").text(formatNum(data.eventBonus));
+    $(".value-first").text(firstPay ? formatNum(data.firstBonus) : 0);
 
     $(".estimate-coin").each(function(index, element) {
         if (index == 0) {
-            $(element).text(data.totalCoin);
+            $(element).text(formatNum(data.totalCoin));
         } else {
-            $(element).find("span").text(data.totalCoin);
+            $(element).find("span").text(formatNum(data.totalCoin));
         }
     });
-    $(".cardpay-price-selector").text(data.price);
+    $(".cardpay-price-selector").text(formatNum(data.price));
 }
 
 function setEventForButtons() {
@@ -476,12 +476,37 @@ function spawnCard() {
         var crossPrice = currentData.getDataSet(index).originCoin,
             ingamePrice = currentData.getDataSet(index).totalCoin,
             realPrice = currentData.getDataSet(index).price;
-        $(element).find(".card-cross-price").text(crossPrice);
-        $(element).find(".card-ingame-price").text(ingamePrice);
-        $(element).find(".card-price").text(realPrice);
+        $(element).find(".card-cross-price").html(`Gốc: <div class="cross-font">${formatNum(crossPrice)}</div>`);
+        $(element).find(".card-ingame-price").text(formatNum(ingamePrice));
+        $(element).find(".card-price").text(formatNum(realPrice) + "VNĐ");
     });
 }
 
+function formatNum(val) {
+    // remove sign if negative
+    var sign = 1;
+    if (val < 0) {
+        sign = -1;
+        val = -val;
+    }
+    let num = val.toString().includes('.') ? val.toString().split('.')[0] : val.toString();
+    let len = num.toString().length;
+    let result = '';
+    let count = 1;
+
+    for (let i = len - 1; i >= 0; i--) {
+        result = num.toString()[i] + result;
+        if (count % 3 === 0 && count !== 0 && i !== 0) {
+            result = '.' + result;
+        }
+        count++;
+    }
+
+    if (val.toString().includes('.')) {
+        result = result + '.' + val.toString().split('.')[1];
+    }
+    return sign < 0 ? '-' + result : result;
+}
 
 
 onDocumentReady();
