@@ -1,64 +1,64 @@
 /* SCROLL CARD-LIST */
 
-const slider = $('#wrapper');
-const slideWrapper = $('.panel-container');
-let isDown = false;
-let startX;
-let scrollLeft;
-let scrollSpeed = 1; // default speed
-slider.mousedown((e) => {
-    console.log(111111);
-    isDown = true;
-    startX = e.pageX - slider.offset().left;
-    scrollLeft = slider.scrollLeft();
-    slideWrapper.mouseleave(() => {
-        $(slideWrapper).off("mousemove");
-        $(slideWrapper).off("mouseup");
-        $(slideWrapper).off("mouseleave");
-        isDown = false;
-    });
-    slideWrapper.mouseup(() => {
-        $(slideWrapper).off("mousemove");
-        $(slideWrapper).off("mouseleave");
-        $(slideWrapper).off("mouseup");
-        isDown = false;
-    });
-    slideWrapper.mousemove((e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offset().left;
-        const walk = (x - startX) * scrollSpeed; //scroll-fast
-        slider.scrollLeft(scrollLeft - walk);
-    });
-});
+// const slider = $('#wrapper');
+// const slideWrapper = $('.panel-container');
+// let isDown = false;
+// let startX;
+// let scrollLeft;
+// let scrollSpeed = 1; // default speed
+// slider.mousedown((e) => {
+//     console.log(111111);
+//     isDown = true;
+//     startX = e.pageX - slider.offset().left;
+//     scrollLeft = slider.scrollLeft();
+//     slideWrapper.mouseleave(() => {
+//         $(slideWrapper).off("mousemove");
+//         $(slideWrapper).off("mouseup");
+//         $(slideWrapper).off("mouseleave");
+//         isDown = false;
+//     });
+//     slideWrapper.mouseup(() => {
+//         $(slideWrapper).off("mousemove");
+//         $(slideWrapper).off("mouseleave");
+//         $(slideWrapper).off("mouseup");
+//         isDown = false;
+//     });
+//     slideWrapper.mousemove((e) => {
+//         if (!isDown) return;
+//         e.preventDefault();
+//         const x = e.pageX - slider.offset().left;
+//         const walk = (x - startX) * scrollSpeed; //scroll-fast
+//         slider.scrollLeft(scrollLeft - walk);
+//     });
+// });
 
 /* ONCLICK-CARD */
 
-const cards = $(".card");
-var totalMouseDistance = 0;
-var limitDistance = 40;
-var lastSeenAt = {
-    x: null,
-    y: null
-};
+// const cards = $(".card");
+// var totalMouseDistance = 0;
+// var limitDistance = 40;
+// var lastSeenAt = {
+//     x: null,
+//     y: null
+// };
 
-$(cards).each(function(index, element) {
-    $(element).mousedown(function() {
-        $(document).mousemove(clickEventHandle);
-        $(document).mouseup(function() {
-            if (totalMouseDistance <= limitDistance) {
-                // after click functions here
-                toggleListScreen(false);
-                console.log(index);
-                currentDataIndex = currentData.viewOrder.indexOf(index);
-                loadCurrentData();
-            }
-            totalMouseDistance = 0;
-            $(document).off("mousemove");
-            $(document).off("mouseup");
-        });
-    });
-});
+// $(cards).each(function(index, element) {
+//     $(element).mousedown(function() {
+//         $(document).mousemove(clickEventHandle);
+//         $(document).mouseup(function() {
+//             if (totalMouseDistance <= limitDistance) {
+//                 // after click functions here
+//                 toggleListScreen(false);
+//                 console.log(index);
+//                 currentDataIndex = currentData.viewOrder.indexOf(index);
+//                 loadCurrentData();
+//             }
+//             totalMouseDistance = 0;
+//             $(document).off("mousemove");
+//             $(document).off("mouseup");
+//         });
+//     });
+// });
 
 
 function clickEventHandle(event) {

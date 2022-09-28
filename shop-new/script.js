@@ -103,14 +103,23 @@ class CountdountClock {
 
     redrawClock() {
         if (this.eventSale == null) return;
-        let milisecondLeft = this.eventSale.endTime * 1000 - Date.now();
-        if (milisecondLeft < 0) {
+        let secondLeft = this.eventSale.endTime  - Date.now()/1000;
+        if (secondLeft < 0) {
             this.eventSale.resetRate();
             clearInterval(this.interval);
             return;
         }
-        let leftTime = new Date(milisecondLeft);
-        txtElement.innerText = `${leftTime.getUTCHours()}:${leftTime.getUTCMinutes()}:${leftTime.getUTCSeconds()}`;
+        this.txtElement.innerText = this.hms(parseInt(secondLeft));
+    }
+
+    hms(seconds) {
+        return [3600, 60]
+          .reduceRight(
+            (p, b) => r => [Math.floor(r / b)].concat(p(r % b)),
+            r => [r]
+          )(seconds)
+          .map(a => a.toString().padStart(2, '0'))
+          .join(':');
     }
 }
 
@@ -225,32 +234,7 @@ function onDocumentReady() {
     setEventForButtons();
 
     // đoạn này call api để lấy data nhưng mà tạm thời hardcode call thẳng
-    let data1 = {
-        "m": 0,
-        "e": 0,
-        "v": [150, 150, 150, 150, 150, 150, 150, 150, 150],
-        "t": [400, 450, 350, 250, 300, 300, 450, 450, 450],
-        "b": [55000000, 120000000, 25000000, 4000000, 9000000, 13500000, 180000000, 300000000, 600000000],
-        "vnd": [100000, 200000, 50000, 10000, 20000, 30000, 300000, 500000, 1000000],
-        "rd": [400, 450, 350, 250, 300, 300, 450, 450, 450],
-        "rv": [150, 100, 90, 80, 70, 60, 50, 40, 30, 20, 0],
-        "rf": [30000000, 30000000, 17000000, 3000000, 7000000, 10000000, 30000000, 30000000, 30000000],
-        "p": [
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            []
-        ],
-        "mm": 6,
-        "isv": false,
-        "st": 0,
-        "et": 0
-    };
+    let data1 = {"m":0,"e":100,"v":[150,150,150,150,150,150,150,150,150],"t":[400,450,350,250,300,300,450,450,450],"b":[65000000,140000000,30000000,5000000,11000000,16500000,210000000,350000000,700000000],"vnd":[100000,200000,50000,10000,20000,30000,300000,500000,1000000],"rd":[400,450,350,250,300,300,450,450,450],"rv":[150,100,90,80,70,60,50,40,30,20,0],"rf":[30000000,30000000,17000000,3000000,7000000,10000000,30000000,30000000,30000000],"p":[[],[],[],[],[],[],[],[],[]],"mm":6,"isv":false,"st":1664298060,"et":1664384340};
     let data2 = {
         "m": 0,
         "e": 0,
@@ -286,11 +270,22 @@ function onDocumentReady() {
     // get data mặc định là data nạp card;
 
     spawnCard();
-    var x = new Carousel($(".top-banner")[0], $(".banner"), 2000, ignoreBannerIndexList);
+    var x = new Carousel($(".top-banner")[0], $(".banner"), 5000, ignoreBannerIndexList);
     lookupPopup = new LookupPopup($(".tab-container"),$(".table-row")[0],$(".row-container")[0],$("#lookup-popup") );
 
     $(".lookup-close-btn").click(() => { lookupPopup.close() });
     $(".btn-detail").each((idx, elem) => $(elem).click(() => lookupPopup.openTab(idx)));
+
+    let wrapper = $("#wrapper");
+    $(".carousel-controller-prev").click(function(){
+        wrapper.animate({scrollLeft: wrapper.scrollLeft() - wrapper.width()}, 600);
+        console.log(wrapper.scrollLeft() - wrapper.width());
+        return false;
+    }); 
+    $(".carousel-controller-next").click(function(){
+        wrapper.animate({scrollLeft: wrapper.scrollLeft() + wrapper.width()}, 600);
+        return false;
+    }); 
 
 }
 
@@ -473,7 +468,7 @@ function loadCurrentData() {
 function toggleListScreen(status) {
     if (status) {
         listTabElem.show();
-        const slideWrapper = $('#wrapper');
+        const slideWrapper = $('#card-container');
         slideWrapper.scrollLeft(0);
         estimateTabElem.hide();
     } else {
@@ -486,7 +481,7 @@ function spawnCard() {
     var nodeNum = paycardData.price.length - 2;
     var node = document.getElementsByClassName("card")[1];
     var clone;
-    var container = document.querySelector("#wrapper");
+    var container = document.querySelector("#card-container");
 
     for (var i = 0; i < nodeNum; i++) {
         clone = node.cloneNode(true);
@@ -501,6 +496,7 @@ function spawnCard() {
         $(element).find(".card-price").text(formatNum(realPrice) + "VNĐ");
     });
 }
+
 
 function formatNum(val) {
     // remove sign if negative

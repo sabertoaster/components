@@ -321,7 +321,8 @@
         width: 100%;
         margin: 0;
         padding: 0;
-        overflow: hidden;
+        overflow-x: scroll;
+        overflow-y: hidden;
         white-space: nowrap;
     }
     
@@ -346,10 +347,18 @@
     
     .card {
         display: inline-block;
-        width: 24.5%;
+        width: calc(0.224 * var(--font-size-ratio));
         height: 100%;
         background-image: url("resources/the thuong.png");
         Background-size: 100% 100%;
+    }
+
+    #card-container{
+        height: 100%;
+        width: fit-content;
+    }
+    #wrapper::-webkit-scrollbar {
+        display: none;
     }
     
     .card-wrapper {
