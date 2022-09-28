@@ -14,6 +14,8 @@ class PaymentData {
         // static data
         this._vipBonus = rawData.v;
         this.vipBonusReference = rawData.rv; // just 4 view
+
+        this.onRemoveEventBonus = ()=>{};
     }
 
     reSortOrder() {
@@ -57,6 +59,7 @@ class PaymentData {
         for (let i = 0; i < this.price.length; i++) {
             this.totalCoin[i] -= this.eventSale.rate * this.price[i];
         }
+        this.onRemoveEventBonus();
         // làm gì đó với view ở đoạn này. Ví dụ như bỏ hiển thị event bonus đi
     }
 
@@ -87,13 +90,15 @@ class CountdountClock {
 
     constructor(txtElement) {
         this.txtElement = txtElement;
-        setInterval(() => {
+        this.interval = setInterval(() => {
             this.redrawClock();
         }, 1000);
     }
 
     initData(eventSale) {
         this.eventSale = eventSale;
+        if(!eventSale.isEvent)
+            clearInterval(this.interval);
     }
 
     redrawClock() {
@@ -101,6 +106,7 @@ class CountdountClock {
         let milisecondLeft = this.eventSale.endTime * 1000 - Date.now();
         if (milisecondLeft < 0) {
             this.eventSale.resetRate();
+            clearInterval(this.interval);
             return;
         }
         let leftTime = new Date(milisecondLeft);
@@ -110,7 +116,7 @@ class CountdountClock {
 
 class Carousel {
 
-    constructor(containerElement, itemElementList, delayTime) {
+    constructor(containerElement, itemElementList, delayTime, ignoreIndexList ) {
         this.containerElement = containerElement;
         this.itemElementList = itemElementList;
         this.itemCount = itemElementList.length;
@@ -122,7 +128,7 @@ class Carousel {
         itemElementList[0].classList.add('active');
         itemElementList[0].classList.remove('inactive');
 
-        this.ignoreIndexList = [];
+        this.ignoreIndexList = ignoreIndexList;
     }
 
     slideNext() {
@@ -211,6 +217,7 @@ class LookupPopup {
 /// coi như đoạn này là ready xong bắt đầu call và có data
 var paycardData, paymodData, clock, firstPay = false;
 var lookupPopup;
+var ignoreBannerIndexList = [];
 
 function onDocumentReady() {
 
@@ -274,15 +281,13 @@ function onDocumentReady() {
         "st": 0,
         "et": 0
     };
-    let clockTxtElement = document.getElementById('clock');
-    clock = new CountdountClock(clockTxtElement);
     onGetPaycardData(data1);
     onGetPaymodData(data2);
     // get data mặc định là data nạp card;
 
     spawnCard();
-    var x = new Carousel($(".top-banner")[0], $(".banner"), 2000);
-    lookupPopup = new LookupPopup($(".tab-container"), $(".table-row")[0], $(".table-body")[0], $("#lookup-popup"));
+    var x = new Carousel($(".top-banner")[0], $(".banner"), 2000, ignoreBannerIndexList);
+    lookupPopup = new LookupPopup($(".tab-container"),$(".table-row")[0],$(".row-container")[0],$("#lookup-popup") );
 
     $(".lookup-close-btn").click(() => { lookupPopup.close() });
     $(".btn-detail").each((idx, elem) => $(elem).click(() => lookupPopup.openTab(idx)));
@@ -297,11 +302,26 @@ function onGetPaycardData(data) {
     paycardData.getDataSet();
     switchToCardTab(); // tab này được bật default sau khi load xong data
     $(".card-UI-btn").css("background-image", "url('resources/nt.png')"); // hình ảnh được bật default
+    paycardData.onRemoveEventBonus = ()=>{
+        if(ignoreBannerIndexList.indexOf(1) == -1)
+            ignoreBannerIndexList.push(1)
+}
+    if(paycardData.eventSale.isEvent){
+        paycardData.countdountClock = new CountdountClock($("#pay-card-clock")[0]);
+        paycardData.countdountClock.initData(paycardData.eventSale);
+        $("#pay-card-rate")[0].innerText = `+${paycardData.eventSale.rate} Tỷ lệ`;
+    }else{
+        ignoreBannerIndexList.push(1);
+    }
 }
 
 function onGetPaymodData(data) {
     paymodData = new PaymentData(data);
     paymodData.getDataSet();
+    paymodData.onRemoveEventBonus = ()=>{
+        if(ignoreBannerIndexList.indexOf(2) == -1)
+            ignoreBannerIndexList.push(2)
+}
 }
 
 var listTabElem = $(".list-screen"),
@@ -314,7 +334,7 @@ function switchToCardTab() {
     toggleCardTab(true);
     toggleModTab(false);
     // đặt logic để bật view tab card ở đây
-    clock.initData(paycardData.eventSale);
+    // clock.initData(paycardData.eventSale);
     currentData = paycardData;
 }
 

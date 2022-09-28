@@ -597,6 +597,7 @@
         right: 0.22%;
         position: absolute;
         border-radius: 0 0 1.5% 1.5%;
+        overflow-y: auto;
     }
     
     .lookup-table>.table-separate-line {
@@ -629,9 +630,12 @@
     .table-row {
         display: none;
     }
+    .row-container{
+        height: fit-content;
+    }
     
-    .table-body>.table-row {
-        height: calc(100% / 8);
+    .row-container > .table-row{
+        height: calc(0.06 * var(--font-size-ratio));
         display: flex;
         align-items: center;
         justify-content: center;
@@ -640,8 +644,7 @@
         color: #c40700;
         font-family: "UTM_AVOBOLD";
     }
-    
-    .table-body>.table-row:nth-child(odd) {
+    .row-container > .table-row:nth-child(odd){
         background-color: #ecd1a6;
     }
     
