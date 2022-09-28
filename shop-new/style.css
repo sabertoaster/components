@@ -475,3 +475,175 @@
         right: 100%;
         transition: right 1s;
     }
+
+
+    .overlay-bg{
+        width: 100vw;
+        height: 100vh;
+        background-color: #0000007d;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    #lookup-popup{
+        left: 15%;
+        top: 1%;
+        right: 15%;
+        position: absolute;
+    }
+    #lookup-popup > .popup-panel{
+        width: 100%;
+        height: 0;
+        padding-bottom: 107%;
+        position: absolute;
+        background-size: 100% 100%;
+        /* border-radius: 0.7em;
+        overflow: hidden; */
+    }
+
+    .popup-panel > .popup-container{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border-radius: 0.7em;
+        overflow: hidden;
+        
+        background-color: #dfc69e;
+    }
+    .popup-container > .tab-container{
+        background-color: #46797c;
+        height: 7%;
+    }
+    .tab-container > .tab{
+        width: calc(99.1% / 4);
+        float: left;
+        height: 100%;
+        background-size: 100% 100%;
+        font-family: "UTM_AVOBOLD";
+        font-size: calc(0.02 * var(--font-size-ratio));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fcfcfc;
+    }
+
+    .tab-container > .tab.active{
+        background-image: url("resources/KHUNG 3.1.png");
+        color: #fce6a4;
+        text-shadow: 2px 2px black;
+    }
+
+    .tab-container > .tab-separate-line{
+        width: 0.3%;
+        float: left;
+        height: 100%;
+        background-image: url("resources/GACH 1.png");
+        background-size: 100% 100%;
+    }
+
+    .popup-container > .coin-calculate{
+        bottom: 2%;
+        height: 15%;
+        left: 4%;
+        right: 4%;
+        background-image: url("resources/KHUNG 5.png");
+        background-size: 100% 100%;
+        position: absolute;
+    }
+
+    .popup-container > .lookup-table{
+        position: absolute;
+        top: 9%;
+        bottom: 19%;
+        left: 4%;
+        right: 4%;
+        background-image: url("resources/KHUNG 4.png");
+        background-size: 100% 100%;
+    }
+    .lookup-table > .table-body{
+        background-color: #e0bd85;
+        top: 10%;
+        bottom: 0.22%;
+        left: 0.22%;
+        right: 0.22%;
+        position: absolute;
+        border-radius: 0 0 1.5% 1.5%;
+    }
+    .lookup-table > .table-separate-line{
+        height: 100%;
+        background-image: url("resources/GACH 1.png");
+        background-size: 100% 120%;
+        width: 0.5%;
+        left: 50%;
+        top: 0;
+        position: absolute;
+    }
+
+    .lookup-table > .table-head{
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        height: 10%;
+        font-family: "UTM_AVOBOLD";
+        font-size: calc(0.02 * var(--font-size-ratio));
+        color: white;
+    }
+
+    .table-head > div {
+        font-size: 1em;
+        width: 50%;
+        /* height: 100%; */
+    }
+    .table-row{
+        display: none;
+    }
+
+    .table-body > .table-row{
+        height: calc(100% / 8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: calc(0.026 * var(--font-size-ratio));
+        color: #c40700;
+        font-family: "UTM_AVOBOLD";
+    }
+    .table-body > .table-row:nth-child(odd){
+        background-color: #ecd1a6;
+    }
+    .table-row > div{
+        width: 100%;
+    }
+
+    #lookup-popup .lookup-close-btn{
+        top: 0;
+        right: 0;
+        position: absolute;
+        width: 8%;
+        height: 0;
+        padding-bottom: 8%;
+        transform: translate(50%,-50%);
+    }
+    .close-btn{
+        background-image: url("resources/tat.png");
+        background-size: 100% 100%;
+    }
+
+    /* font dèined  */
+    @font-face{
+        font-family: UTM_AVOBOLD;
+        src: url(resources/fonts/UTM\ AVOBOLD.TTF);
+    }
+
+
+    :root {  
+        --font-size-ratio: 100vw; 
+    }
+    /*  chỗ này bổ sung tương tự với md sm các thứ là xong */
+    @media (min-width: 1200px){
+        :root { 
+            /* 1140 * lg-10*/
+            --font-size-ratio: 950px;  
+        } 
+    }
