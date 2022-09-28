@@ -77,7 +77,6 @@ let startYLookup;
 let scrollLeftLookup;
 let scrollSpeedLookup = 1; // default speed
 $(sliderLookup).mousedown((e) => {
-    console.log(111111);
     isDownLookup = true;
     startYLookup = e.pageY - sliderLookup.offset().up;
     scrollLeftLookup = sliderLookup.scrollTop();
