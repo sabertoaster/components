@@ -715,12 +715,14 @@
     
     .select2-dropdown {
         border: none;
-        background-color: #b5b5b500;
+        background-image: url("resources/khung\ tien.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
     }
     
     .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
         color: #7e161e !important;
-        background-color: #b5b5b500;
+        background-color: #f6c33a;
     }
     
     .select2-container--default .select2-results__option--selected {
@@ -741,7 +743,7 @@
     }
     
     .select2-container li {
-        background-image: url("resources/nhap\ ma\ the.png");
+        /* background-image: url("resources/nhap\ ma\ the.png"); */
         background-repeat: no-repeat;
         background-size: 100% 100%;
         color: #7e161e;

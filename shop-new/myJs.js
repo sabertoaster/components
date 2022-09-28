@@ -32,6 +32,8 @@
 //     });
 // });
 
+
+
 /* ONCLICK-CARD */
 
 const cards = $(".card");
@@ -120,6 +122,21 @@ $(document).ready(function() {
         data: dropdownData
     })
     console.log(temp);
+
+    /* DROPDOWN BINDING */
+    setTimeout(() => {
+            var binding = $(".select2-container li").find("li");
+
+            console.log(binding);
+            $(binding).each((index, element) => {
+                $(element).click((e) => {
+                    loadContent(index);
+                })
+            })
+        }, 2000)
+        /* DROPDOWN BINDING */
+
+
     // $(temp).each(function(index, element) {
     //     console.log($($(element)[0]));
     //     $(element).each(function(iter, el) {
