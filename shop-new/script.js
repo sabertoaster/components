@@ -1,4 +1,4 @@
-const vipPresetData = ["VIP", "Nhất Phẩm", "Nhị Phẩm", "Tam Phẩm", "Tứ Phẩm", "Ngũ Phẩm", "Lục Phẩm", "Thất Phẩm", "Bát Phẩm","Cửu Phẩm", "Dân "];
+const vipPresetData = ["VIP", "Nhất Phẩm", "Nhị Phẩm", "Tam Phẩm", "Tứ Phẩm", "Ngũ Phẩm", "Lục Phẩm", "Thất Phẩm", "Bát Phẩm", "Cửu Phẩm", "Dân "];
 class PaymentData {
     constructor(rawData) {
         this.price = rawData.vnd;
@@ -145,9 +145,9 @@ class Carousel {
     }
 }
 
-class LookupPopup{
+class LookupPopup {
 
-    constructor(tabContainer, rowTemplate, table, popupContainer){
+    constructor(tabContainer, rowTemplate, table, popupContainer) {
         this.tabList = $(tabContainer).find(".tab");
         this.rowTemplate = rowTemplate; // setting template. Cái này bỏ sang bên class riêng cũng được nhưng ngắn nên ko cần thiết
         // rowTemplate.leftColValue = $(".left-col-value")[0];
@@ -155,53 +155,53 @@ class LookupPopup{
         this.popupContainer = popupContainer;
         this.head1 = $("#head1")[0];
         this.head2 = $("#head2")[0];
-        this.table =  table;
+        this.table = table;
         const ctx = this;
-        for(let i = 0;i<this.tabList.length;i++){
-            this.tabList[i].onclick = ()=>{ctx.openTab(i)}
+        for (let i = 0; i < this.tabList.length; i++) {
+            this.tabList[i].onclick = () => { ctx.openTab(i) }
         }
-        
+
     }
 
-    openTab(tabIndex){
-        this.popupContainer.css("display","block");
+    openTab(tabIndex) {
+        this.popupContainer.css("display", "block");
         this.tabList.removeClass("active");
         this.tabList[tabIndex].classList.add("active");
-        switch (tabIndex){
+        switch (tabIndex) {
             case 0:
-                this.initData(i=>currentData.sortedPriceView[i] +" VND",i=>currentData.sortedOriginCoin[i], Math.min(currentData.sortedPriceView.length, currentData.sortedOriginCoin.length));
+                this.initData(i => currentData.sortedPriceView[i] + " VND", i => currentData.sortedOriginCoin[i], Math.min(currentData.sortedPriceView.length, currentData.sortedOriginCoin.length));
                 this.head1.innerText = "Mệnh giá";
                 this.head2.innerText = "Tỷ lệ";
                 break;
             case 1:
-                this.initData(i=>vipPresetData[i],i=>currentData.vipBonusReference[i], vipPresetData.length);
+                this.initData(i => vipPresetData[i], i => currentData.vipBonusReference[i], vipPresetData.length);
                 this.head1.innerText = "Cấp VIP";
                 this.head2.innerText = "Tỷ lệ";
                 break;
             case 2:
-                this.initData(i=>"Khuyến mại sự kiện",currentData.eventSale.rate, currentData.eventSale.isEvent?1:0);
+                this.initData(i => "Khuyến mại sự kiện", currentData.eventSale.rate, currentData.eventSale.isEvent ? 1 : 0);
                 this.head1.innerText = "Khuyến mại hiện tại";
                 this.head2.innerText = "Tỷ lệ";
                 break;
             case 3:
-                this.initData(i=>currentData.sortedPriceView[i] +" VND",i=>currentData.sortedFirstBonus[i], Math.min(currentData.sortedPriceView.length, currentData.sortedFirstBonus.length));
+                this.initData(i => currentData.sortedPriceView[i] + " VND", i => currentData.sortedFirstBonus[i], Math.min(currentData.sortedPriceView.length, currentData.sortedFirstBonus.length));
                 this.head1.innerText = "Mệnh giá";
                 this.head2.innerText = "Số bảo nhận được";
                 break;
-            
+
         }
     }
 
-    close(){
-        this.popupContainer.css("display","none");
+    close() {
+        this.popupContainer.css("display", "none");
     }
 
-    initData(getData1, getData2, totalRecord){
+    initData(getData1, getData2, totalRecord) {
         $(this.table).empty();
-        for(let i= 0; i < totalRecord; i++){
+        for (let i = 0; i < totalRecord; i++) {
             let record = this.rowTemplate.cloneNode(true);
-            $(record).children(".left-col-value")[0].innerText  = getData1(i); 
-            $(record).children(".right-col-value")[0].innerText  = getData2(i);
+            $(record).children(".left-col-value")[0].innerText = getData1(i);
+            $(record).children(".right-col-value")[0].innerText = getData2(i);
             this.table.appendChild(record);
         }
     }
@@ -282,10 +282,10 @@ function onDocumentReady() {
 
     spawnCard();
     var x = new Carousel($(".top-banner")[0], $(".banner"), 2000);
-    lookupPopup = new LookupPopup($(".tab-container"),$(".table-row")[0],$(".table-body")[0],$("#lookup-popup") );
+    lookupPopup = new LookupPopup($(".tab-container"), $(".table-row")[0], $(".table-body")[0], $("#lookup-popup"));
 
-    $(".lookup-close-btn").click(()=>{lookupPopup.close()});
-    $(".btn-detail").each((idx,elem)=>$(elem).click(()=> lookupPopup.openTab(idx)) );
+    $(".lookup-close-btn").click(() => { lookupPopup.close() });
+    $(".btn-detail").each((idx, elem) => $(elem).click(() => lookupPopup.openTab(idx)));
 
 }
 
@@ -444,7 +444,7 @@ function setEventForButtons() {
 }
 
 function loadCurrentData() {
-    console.log(currentDataIndex);
+    // console.log(currentDataIndex);
     loadContent(currentData.viewOrder[currentDataIndex]);
 }
 

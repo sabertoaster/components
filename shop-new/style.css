@@ -32,28 +32,28 @@
     
     .price-color {
         color: #c40700;
-        font-size: 1.5vw;
+        font-size: calc(0.03 * var(--font-size-ratio));
     }
     
     .detail-info-font {
-        font-size: 0.7vw;
+        font-size: calc(0.015 * var(--font-size-ratio));
         color: #f1eea4;
     }
     
     .header-price-font {
         font-family: UTM_HELVEBOLD;
-        font-size: 1.25vw;
+        font-size: calc(0.03 * var(--font-size-ratio));
         color: #fef0ab;
         /*fee367 -> #FFF*/
     }
     
     .lower-price-font {
         font-family: UTM_AVOBOLD;
-        font-size: 1.15vw;
+        font-size: calc(0.026 * var(--font-size-ratio));
         color: #fcfbda;
         stroke: #562a00;
-        stroke-width: .07vw;
-        -webkit-text-stroke: .07vw #562a00;
+        stroke-width: calc(0.01 * var(--font-size-ratio));
+        -webkit-text-stroke: calc(0.0015 * var(--font-size-ratio)) #562a00;
         transform: scale(1, 1.05);
     }
     
@@ -257,7 +257,7 @@
         float: left;
         color: #cdcf94;
         font-family: UTM_AVO;
-        font-size: 0.8vw;
+        font-size: calc(0.013 * var(--font-size-ratio));
     }
     
     .estimate-row>.estimate-value {
@@ -267,7 +267,7 @@
         float: right;
         color: #f3b953;
         font-family: UTM_HELVEBOLD;
-        font-size: 1vw;
+        font-size: calc(0.02 * var(--font-size-ratio));
     }
     
     .estimate-row>.btn-detail {
@@ -364,7 +364,7 @@
     
     .card-cross-price {
         top: 5%;
-        font-size: .8vw;
+        font-size: calc(0.012 * var(--font-size-ratio));
         display: flex;
         white-space: pre-wrap;
         font-family: UTM_AVOBOLD;
@@ -424,7 +424,7 @@
         padding-top: 4%;
         padding-left: 5%;
         color: #7e161e;
-        font-size: 1vw;
+        font-size: calc(0.02 * var(--font-size-ratio));
     }
     
     .cardpay-price-selector {
@@ -485,7 +485,7 @@
     .banner-line {
         position: relative;
         color: #fef0ca;
-        font-size: 1.25vw;
+        font-size: calc(0.03 * var(--font-size-ratio));
     }
     
     .banner-line * {
@@ -501,9 +501,8 @@
         right: 100%;
         transition: right 1s;
     }
-
-
-    .overlay-bg{
+    
+    .overlay-bg {
         width: 100vw;
         height: 100vh;
         background-color: #0000007d;
@@ -511,13 +510,15 @@
         top: 0;
         left: 0;
     }
-    #lookup-popup{
+    
+    #lookup-popup {
         left: 15%;
         top: 1%;
         right: 15%;
         position: absolute;
     }
-    #lookup-popup > .popup-panel{
+    
+    #lookup-popup>.popup-panel {
         width: 100%;
         height: 0;
         padding-bottom: 107%;
@@ -526,21 +527,22 @@
         /* border-radius: 0.7em;
         overflow: hidden; */
     }
-
-    .popup-panel > .popup-container{
+    
+    .popup-panel>.popup-container {
         width: 100%;
         height: 100%;
         position: absolute;
         border-radius: 0.7em;
         overflow: hidden;
-        
         background-color: #dfc69e;
     }
-    .popup-container > .tab-container{
+    
+    .popup-container>.tab-container {
         background-color: #46797c;
         height: 7%;
     }
-    .tab-container > .tab{
+    
+    .tab-container>.tab {
         width: calc(99.1% / 4);
         float: left;
         height: 100%;
@@ -552,22 +554,22 @@
         align-items: center;
         color: #fcfcfc;
     }
-
-    .tab-container > .tab.active{
+    
+    .tab-container>.tab.active {
         background-image: url("resources/KHUNG 3.1.png");
         color: #fce6a4;
         text-shadow: 2px 2px black;
     }
-
-    .tab-container > .tab-separate-line{
+    
+    .tab-container>.tab-separate-line {
         width: 0.3%;
         float: left;
         height: 100%;
         background-image: url("resources/GACH 1.png");
         background-size: 100% 100%;
     }
-
-    .popup-container > .coin-calculate{
+    
+    .popup-container>.coin-calculate {
         bottom: 2%;
         height: 15%;
         left: 4%;
@@ -576,8 +578,8 @@
         background-size: 100% 100%;
         position: absolute;
     }
-
-    .popup-container > .lookup-table{
+    
+    .popup-container>.lookup-table {
         position: absolute;
         top: 9%;
         bottom: 19%;
@@ -586,7 +588,8 @@
         background-image: url("resources/KHUNG 4.png");
         background-size: 100% 100%;
     }
-    .lookup-table > .table-body{
+    
+    .lookup-table>.table-body {
         background-color: #e0bd85;
         top: 10%;
         bottom: 0.22%;
@@ -595,7 +598,8 @@
         position: absolute;
         border-radius: 0 0 1.5% 1.5%;
     }
-    .lookup-table > .table-separate-line{
+    
+    .lookup-table>.table-separate-line {
         height: 100%;
         background-image: url("resources/GACH 1.png");
         background-size: 100% 120%;
@@ -604,8 +608,8 @@
         top: 0;
         position: absolute;
     }
-
-    .lookup-table > .table-head{
+    
+    .lookup-table>.table-head {
         display: flex;
         text-align: center;
         align-items: center;
@@ -615,17 +619,18 @@
         font-size: calc(0.02 * var(--font-size-ratio));
         color: white;
     }
-
-    .table-head > div {
+    
+    .table-head>div {
         font-size: 1em;
         width: 50%;
         /* height: 100%; */
     }
-    .table-row{
+    
+    .table-row {
         display: none;
     }
-
-    .table-body > .table-row{
+    
+    .table-body>.table-row {
         height: calc(100% / 8);
         display: flex;
         align-items: center;
@@ -635,41 +640,44 @@
         color: #c40700;
         font-family: "UTM_AVOBOLD";
     }
-    .table-body > .table-row:nth-child(odd){
+    
+    .table-body>.table-row:nth-child(odd) {
         background-color: #ecd1a6;
     }
-    .table-row > div{
+    
+    .table-row>div {
         width: 100%;
     }
-
-    #lookup-popup .lookup-close-btn{
+    
+    #lookup-popup .lookup-close-btn {
         top: 0;
         right: 0;
         position: absolute;
         width: 8%;
         height: 0;
         padding-bottom: 8%;
-        transform: translate(50%,-50%);
+        transform: translate(50%, -50%);
     }
-    .close-btn{
+    
+    .close-btn {
         background-image: url("resources/tat.png");
         background-size: 100% 100%;
     }
-
     /* font dèined  */
-    @font-face{
+    
+    @font-face {
         font-family: UTM_AVOBOLD;
         src: url(resources/fonts/UTM\ AVOBOLD.TTF);
     }
-
-
-    :root {  
-        --font-size-ratio: 100vw; 
+    
+     :root {
+        --font-size-ratio: 100vw;
     }
     /*  chỗ này bổ sung tương tự với md sm các thứ là xong */
-    @media (min-width: 1200px){
-        :root { 
+    
+    @media (min-width: 1200px) {
+         :root {
             /* 1140 * lg-10*/
-            --font-size-ratio: 950px;  
-        } 
+            --font-size-ratio: 950px;
+        }
     }
