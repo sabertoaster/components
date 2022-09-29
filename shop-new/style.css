@@ -256,7 +256,7 @@
         margin-left: 7%;
         float: left;
         color: #cdcf94;
-        font-family: UTM_AVO;
+        font-family: UTM_AVOBOLD;
         font-size: calc(0.013 * var(--font-size-ratio));
     }
     
@@ -498,7 +498,7 @@
         background-repeat: no-repeat;
     }
     
-    #pay-card-clock {
+    .pay-clock {
         font-family: UTM_HELVE;
         text-align: center;
         margin-left: 20%;
@@ -508,10 +508,14 @@
     
     .top-banner>.banner {
         width: 100%;
-        height: 80%;
+        height: 75%;
         top: 10%;
         position: absolute;
         right: -100%;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
     }
     
     .banner>* {
@@ -712,12 +716,38 @@
         background-size: 100% 100%;
     }
     /* select2 */
+
+    .cardpay-box .select2-selection__rendered{
+        padding-top: calc(0.015 * var(--font-size-ratio)) !important;
+        padding-left: calc(0.025 * var(--font-size-ratio)) !important;
+        padding-bottom: calc(0.015 * var(--font-size-ratio)) !important;
+        width: calc(0.38 * var(--font-size-ratio));
+    
+    }
+
+    .cardpay-box .select2-selection__arrow{
+        display: none;
+    }
+    .cardpay-box .select2-container--default .select2-selection--single{
+        border: none;
+    }
     
     .select2-dropdown {
         border: none;
-        background-image: url("resources/khung\ tien.png");
+        background-image: url("resources/1.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
+        top: calc(-0.02 * var(--font-size-ratio));
+        height: calc(0.3 * var(--font-size-ratio));;
+        background-color: unset;
+    }
+    .select2-results {
+        padding: 5px;
+        height: 100%;
+    }
+
+    .select2-container--default .select2-results>.select2-results__options{
+        max-height: 100% !important;
     }
     
     .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
@@ -741,6 +771,11 @@
         font-family: UTM_AVOBOLD;
         font-size: calc(0.02 * var(--font-size-ratio));
     }
+
+    .select2-container{
+        width: 100%;
+        height: 100%;
+    }
     
     .select2-container li {
         /* background-image: url("resources/nhap\ ma\ the.png"); */
@@ -753,6 +788,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        border-bottom: 3px solid gray;
     }
     /* font dèined  */
     
@@ -761,14 +797,24 @@
         src: url(resources/fonts/UTM\ AVOBOLD.TTF);
     }
     
-     :root {
-        --font-size-ratio: 100vw;
+    :root {
+        --font-size-ratio: calc(100vw - 60px);
     }
     /*  chỗ này bổ sung tương tự với md sm các thứ là xong */
     
+    @media (min-width: 768px){
+        :root {
+            --font-size-ratio: 690px;
+        }
+    }
+    @media (min-width: 992px){
+        :root {
+            --font-size-ratio: 910px;
+        }
+    }
     @media (min-width: 1200px) {
-         :root {
+        :root {
             /* 1140 * lg-10*/
-            --font-size-ratio: 950px;
+            --font-size-ratio: 920px;
         }
     }

@@ -107,44 +107,26 @@ currentData.reSortOrder();
 var dropdownData = [];
 for (var i = 0; i < currentData.sortedPrice.length; i++) {
     dropdownData.push({
-        "id": i,
+        "id": currentData.sortedPrice[i],
         "text": formatNum(currentData.sortedPrice[i]) + " VNĐ"
     });
 }
 console.log(dropdownData);
-
+var priceSelectBox;
 $(document).ready(function() {
     var $disabledResults = $(".js-example-disabled-results");
-    var temp = $disabledResults.select2({
+    priceSelectBox = $disabledResults.select2({
         minimumResultsForSearch: -1,
-        width: '90%',
+        width: '100%',
         height: '100%',
         data: dropdownData
     })
-    console.log(temp);
-
-    /* DROPDOWN BINDING */
-    setTimeout(() => {
-            var binding = $(".select2-container li").find("li");
-
-            console.log(binding);
-            $(binding).each((index, element) => {
-                $(element).click((e) => {
-                    loadContent(index);
-                })
-            })
-        }, 2000)
-        /* DROPDOWN BINDING */
-
-
-    // $(temp).each(function(index, element) {
-    //     console.log($($(element)[0]));
-    //     $(element).each(function(iter, el) {
-    //         console.log($(el));
-    //         $(el).each(function(iterator, ele) {
-    //             $(ele).addClass("tessstttt");
-    //             console.log($(ele));
-    //         })
-    //     })
-    // });
+    priceSelectBox.change(()=>{
+        let dataIndex = currentData.sortedPrice.indexOf(parseInt(priceSelectBox.val()));
+        if(dataIndex == -1)
+            return;
+        currentDataIndex = dataIndex;
+        loadCurrentData();
+    })
+    
 });

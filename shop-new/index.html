@@ -38,19 +38,33 @@
                 </div> -->
                 <div class="content-container">
                     <div class="top-banner">
+                        <div class="banner banner-0">
+                            <div class="banner-line utm_avobold">Nạp qua mod để nhận bảo nhiều nhất!</div>
+                        </div>
                         <div class="banner banner-1">
                             <div class="banner-line utm_avobold" style="top:1%; left:25%;">Khuyến mại
                                 <span class="banner-line-title" id="pay-card-rate" style="font-size: calc(0.05 * var(--font-size-ratio));">+100 Tỷ lệ </span>
                             </div>
-                            <div class="banner-line utm_avobold" style="bottom:10%; left:10%; display: flex; flex-wrap: wrap; white-space: nowrap;">
+                            <div class="banner-line utm_avobold" style="bottom:10%; display: flex; flex-wrap: wrap; white-space: nowrap;">
                                 Khi&nbsp;<span class="banner-line-special">Nạp thẻ&nbsp;</span>và&nbsp;<span class="banner-line-special ">Wallet&nbsp;</span> sẽ kết thúc sau:&nbsp;
                                 <div class="banner-line clock-wrapper">
-                                    <div id="pay-card-clock"></div>
+                                    <div id="pay-card-clock" class="pay-clock"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="banner banner-2">
+                            <div class="banner-line utm_avobold" style="top:1%; left:25%;">Khuyến mại
+                                <span class="banner-line-title" id="pay-mod-rate" style="font-size: calc(0.05 * var(--font-size-ratio));">+100 Tỷ lệ </span>
+                            </div>
+                            <div class="banner-line utm_avobold" style="bottom:10%; display: flex; flex-wrap: wrap; white-space: nowrap;">
+                                Khi&nbsp;<span class="banner-line-special">Nạp Mod&nbsp;</span> sẽ kết thúc sau:&nbsp;
+                                <div class="banner-line clock-wrapper">
+                                    <div id="pay-mod-clock" class="pay-clock">10:10:10</div>
+                                </div>
+                            </div>
                         </div>
+                        <!-- <div class="banner banner-2">
+                        </div> -->
                     </div>
                     <div class="list-screen">
                         <div class="myCarousel">
@@ -101,13 +115,13 @@
                         <div class="left-layout card-UI-panel">
                             <div class="estimate-mod screen-container">
                                 <div class="cardpay-provider"></div>
-                                <div class="cardpay-box cardpay-price-selector utm_avobold ">
+                                <div class="cardpay-box cardpay-price-selector utm_avobold " style="padding:0">
                                     <select class="js-example-disabled-results">
                                     </select>
                                 </div>
 
-                                <div contenteditable="true" class="cardpay-box cardpay-seri-box utm_avobold" data-text="Chọn mã Seri"></div>
-                                <div contenteditable="true" class="cardpay-box cardpay-code-box utm_avobold" data-text="Chọn mã số thẻ"></div>
+                                <div contenteditable="true" class="cardpay-box cardpay-seri-box utm_avobold" data-text="Chọn mã Seri" onfocus="handleShowLogin(event)"></div>
+                                <div contenteditable="true" class="cardpay-box cardpay-code-box utm_avobold" data-text="Chọn mã số thẻ" onfocus="handleShowLogin(event)"></div>
                                 <div class="cardpay-lower-component">
                                     <div class="cardpay-button"></div>
                                     <!-- <div class="call-image"></div> -->

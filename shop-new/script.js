@@ -194,7 +194,7 @@ class LookupPopup {
                 this.head2.innerText = "Tỷ lệ";
                 break;
             case 2:
-                this.initData(i => "Khuyến mại sự kiện", currentData.eventSale.rate, currentData.eventSale.isEvent ? 1 : 0);
+                this.initData(i => "Khuyến mại sự kiện", i=>currentData.eventSale.rate, currentData.eventSale.isEvent ? 1 : 0);
                 this.head1.innerText = "Khuyến mại hiện tại";
                 this.head2.innerText = "Tỷ lệ";
                 break;
@@ -224,7 +224,7 @@ class LookupPopup {
 }
 
 /// coi như đoạn này là ready xong bắt đầu call và có data
-var paycardData, paymodData, clock, firstPay = false;
+var paycardData, paymodData, firstPay = true;
 var lookupPopup;
 var ignoreBannerIndexList = [];
 
@@ -258,7 +258,7 @@ function onDocumentReady() {
         "mm": 6,
         "isv": false,
         "st": 1664298060,
-        "et": 1664384340
+        "et": 1665384340
     };
     let data2 = {
         "m": 0,
@@ -342,6 +342,13 @@ function onGetPaymodData(data) {
         if (ignoreBannerIndexList.indexOf(2) == -1)
             ignoreBannerIndexList.push(2)
     }
+    if (paymodData.eventSale.isEvent) {
+        paymodData.countdountClock = new CountdountClock($("#pay-mod-clock")[0]);
+        paymodData.countdountClock.initData(paymodData.eventSale);
+        $("#pay-mod-rate")[0].innerText = `+${paymodData.eventSale.rate} Tỷ lệ`;
+    } else {
+        ignoreBannerIndexList.push(2);
+    }
 }
 
 var listTabElem = $(".list-screen"),
@@ -364,7 +371,7 @@ function switchToModTab() {
     toggleModTab(true);
     // đặt logic để bật view tab mod ở đây
     //
-    clock.initData(paymodData.eventSale);
+    // clock.initData(paymodData.eventSale);
     currentData = paymodData;
     currentDataIndex = 0;
     loadContent(currentDataIndex);
@@ -446,7 +453,9 @@ function loadContent(index) {
             $(element).find("span").text(formatNum(data.totalCoin));
         }
     });
-    $(".select2-selection__rendered").text(formatNum(data.price));
+    if(data.price != priceSelectBox.val())
+        priceSelectBox.val(data.price).trigger("change");
+    // $(".select2-selection__rendered").text(formatNum(data.price));
 }
 
 function setEventForButtons() {
@@ -468,17 +477,19 @@ function setEventForButtons() {
 
 
     $(".btn-plus").on("click", function() {
-        if (currentDataIndex == currentData.price.length - 1) {
+        currentDataIndex++;
+        if (currentDataIndex >= currentData.price.length) {
             currentDataIndex = 0;
-        } else currentDataIndex++;
+        } 
         loadCurrentData();
 
     });
 
     $(".btn-minus").click(function(e) {
-        if (currentDataIndex == 0) {
+        currentDataIndex--;
+        if (currentDataIndex < 0) {
             currentDataIndex = currentData.price.length - 1;
-        } else currentDataIndex--;
+        }
         loadCurrentData();
     });
 }
