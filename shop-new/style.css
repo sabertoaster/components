@@ -26,6 +26,11 @@
         src: url("resources/fonts/UTM HELVEBOLD.TTF");
     }
     
+    @font-face {
+        font-family: UTM_HELVEITALIC;
+        src: url("resources/fonts/UTM HELVE_ITALIC.TTF");
+    }
+    
     .utm_avobold {
         font-family: UTM_AVOBOLD;
     }
@@ -478,6 +483,34 @@
         background-size: contain;
     }
     
+    .cardpay-description {
+        top: 45%;
+        width: 80%;
+        height: 40%;
+        font-size: calc(0.023 * var(--font-size-ratio));
+        font-family: UTM_HELVEITALIC;
+        color: #f3dbb4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .cardpay-description>.cardpay-description-line {
+        width: 100%;
+        height: 40%;
+        /* chinh height = space giua cac line voi nhau */
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .cardpay-description-line>.call-image {
+        position: relative;
+        inset: unset !important;
+        width: calc(0.15 * var(--font-size-ratio));
+    }
+    
     [contenteditable] {
         outline: 0px solid transparent;
     }
@@ -716,19 +749,19 @@
         background-size: 100% 100%;
     }
     /* select2 */
-
-    .cardpay-box .select2-selection__rendered{
+    
+    .cardpay-box .select2-selection__rendered {
         padding-top: calc(0.015 * var(--font-size-ratio)) !important;
         padding-left: calc(0.025 * var(--font-size-ratio)) !important;
         padding-bottom: calc(0.015 * var(--font-size-ratio)) !important;
         width: calc(0.38 * var(--font-size-ratio));
-    
     }
-
-    .cardpay-box .select2-selection__arrow{
+    
+    .cardpay-box .select2-selection__arrow {
         display: none;
     }
-    .cardpay-box .select2-container--default .select2-selection--single{
+    
+    .cardpay-box .select2-container--default .select2-selection--single {
         border: none;
     }
     
@@ -738,15 +771,17 @@
         background-repeat: no-repeat;
         background-size: 100% 100%;
         top: calc(-0.02 * var(--font-size-ratio));
-        height: calc(0.3 * var(--font-size-ratio));;
+        height: calc(0.3 * var(--font-size-ratio));
+        ;
         background-color: unset;
     }
+    
     .select2-results {
         padding: 5px;
         height: 100%;
     }
-
-    .select2-container--default .select2-results>.select2-results__options{
+    
+    .select2-container--default .select2-results>.select2-results__options {
         max-height: 100% !important;
     }
     
@@ -771,8 +806,8 @@
         font-family: UTM_AVOBOLD;
         font-size: calc(0.02 * var(--font-size-ratio));
     }
-
-    .select2-container{
+    
+    .select2-container {
         width: 100%;
         height: 100%;
     }
@@ -797,23 +832,25 @@
         src: url(resources/fonts/UTM\ AVOBOLD.TTF);
     }
     
-    :root {
+     :root {
         --font-size-ratio: calc(100vw - 60px);
     }
     /*  chỗ này bổ sung tương tự với md sm các thứ là xong */
     
-    @media (min-width: 768px){
-        :root {
+    @media (min-width: 768px) {
+         :root {
             --font-size-ratio: 690px;
         }
     }
-    @media (min-width: 992px){
-        :root {
+    
+    @media (min-width: 992px) {
+         :root {
             --font-size-ratio: 910px;
         }
     }
+    
     @media (min-width: 1200px) {
-        :root {
+         :root {
             /* 1140 * lg-10*/
             --font-size-ratio: 920px;
         }
